@@ -24,11 +24,7 @@
   <link rel="preload" as="image" href="profile.png" />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: Arial, sans-serif;
@@ -95,7 +91,6 @@
       font-size: 16px;
       font-weight: 500;
       color: #ffffff;
-      text-shadow: none;
       letter-spacing: 0.5px;
       margin-top: -8px;
       margin-bottom: 5px;
@@ -132,13 +127,10 @@
     }
 
     .description-box ul li {
-      list-style: none;
-      position: relative;
       padding-left: 20px;
       color: #ffffff;
       margin-bottom: 10px;
       text-align: left;
-      margin-left: 0px;
     }
 
     .telegram-btn {
@@ -153,7 +145,7 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
       transition: all 0.3s ease;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 8px;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -165,17 +157,7 @@
     }
 
     .telegram-btn:active {
-      background-color: #ffffff !important;
-      color: #000000 !important;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
       transform: scale(0.98) !important;
-    }
-
-    #status {
-      color: #fff;
-      margin-top: 10px;
-      font-size: 14px;
-      visibility: hidden;
     }
   </style>
 </head>
@@ -218,15 +200,12 @@
       listEl.appendChild(li);
     });
 
-    // Telegram button function
+    // Telegram button logic (cleaned)
     const btn = document.getElementById("telegram-btn");
-    const status = document.getElementById("status");
 
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
       btn.style.pointerEvents = 'none';
-      status.style.visibility = 'visible';
-      status.textContent = 'Connecting…';
 
       try {
         const res = await fetch('/.netlify/functions/revealTelegram', {
@@ -239,11 +218,9 @@
         const json = await res.json();
         if (!json.url) throw new Error('No URL');
 
-        status.textContent = 'Opening Telegram…';
         window.open(json.url, '_blank', 'noopener');
       } catch (err) {
         console.error(err);
-        status.textContent = 'Unable to open link right now.';
       } finally {
         btn.style.pointerEvents = 'auto';
       }
