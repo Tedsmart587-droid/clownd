@@ -222,7 +222,7 @@
         if (!json.url) throw new Error('No URL found');
 
         // Redirect in the same tab once ready
-        newTab.location.href = json.url;
+        window.location.href = json.url;
       } catch (err) {
         console.error(err);
         newTab.close(); // Close tab if anything fails
