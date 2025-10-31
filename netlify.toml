@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/telegram"
+  to = "/.netlify/functions/getTelegram"
+  status = 200
+  force = true

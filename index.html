@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ј‌а‌m‌е‌ѕ‌ Т‌r‌а‌d‌е‌</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ј‌а‌m‌е‌ѕ‌ mentorship program">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bitgets.netlify.app/">
+  <meta property="og:image" content="https://bitgets.netlify.app/cover.png">
+  <meta property="og:image:alt" content="Ј‌а‌m‌е‌ѕ‌ Trade">
+  <meta property="og:site_name" content="Ј‌а‌m‌е‌ѕ‌ Т‌r‌а‌d‌е‌">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ј‌а‌m‌е‌ѕ‌ Trade mentorship program">
+  <meta name="twitter:image" content="https://biodoms.netlify.app/cover.png">
+
+  <!-- Preload Images -->
+  <link rel="preload" as="image" href="background.png">
+  <link rel="preload" as="image" href="cover.png">
+  <link rel="preload" as="image" href="profile.png">
+
+  <style>
+    /* your existing styles unchanged */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; min-height: 100vh; color: #fff; font-size: 14px; }
+    .background { width: 100%; min-height: 100vh; background-image: url('background.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; padding-bottom: 50px; }
+    .cover { width: 100%; height: 150px; background-image: url('cover.png'); background-size: cover; background-position: center; margin-bottom: -60px; }
+    .profile { width: 120px; height: 120px; border-radius: 50%; border: 3px solid white; background-image: url('profile.png'); background-size: cover; background-position: center; margin-bottom: 15px; z-index: 10; }
+    .site-name { font-size: 18px; font-weight: 600; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); margin-bottom: 12px; letter-spacing: 3px; text-transform: uppercase; }
+    .content { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 5px; width: 100%; }
+    .headline { font-size: 16px; font-weight: 500; color: #ffffff; text-shadow: none; letter-spacing: 0.5px; margin-top: -8px; margin-bottom: 5px; text-transform: none; max-width: 340px; line-height: 1.3; margin-left: auto; margin-right: auto; }
+    .description-box { width: 350px; max-width: 400px; background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); color: #ffffff; padding: 8px 6px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; font-size: 16px; line-height: 1.6; }
+    .description-box h2 { font-size: 18px; margin-bottom: 10px; text-transform: uppercase; }
+    .description-box ul { list-style: none; padding: 0; margin: 0; }
+    .description-box ul li { list-style: none; position: relative; padding-left: 20px; color: #ffffff; margin-bottom: 10px; text-align: left; margin-left: 0px; }
+    .telegram-btn { display: inline-block; padding: 6px 25px; background-color: #00ff80; color: #000000; font-size: 18px; font-weight: bold; border-radius: 30px; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: all 0.3s ease; cursor: pointer; margin-top: 5px; -webkit-tap-highlight-color: transparent; }
+    @media (hover: hover) { .telegram-btn:hover { box-shadow: 0 0 15px #00ff80; transform: scale(1.05); } }
+    .telegram-btn:active { background-color: #00ff80 !important; color: #000000 !important; box-shadow: 0 2px 4px rgba(0,0,0,0.15) !important; transform: scale(0.98) !important; }
+  </style>
+</head>
+
+<body>
+  <div class="background">
+    <div class="cover"></div>
+    <div class="profile"></div>
+
+    <div class="site-name" id="siteName"></div>
+
+    <div class="content">
+      <div class="headline" id="headline"></div>
+
+      <div class="description-box">
+        <h2 id="featuresTitle"></h2>
+        <ul id="featuresList"></ul>
+      </div>
+
+      <a id="telegram-btn" class="telegram-btn" href="#">Join for free</a>
+    </div>
+  </div>
+
+  <script>
+    // your original dynamic text code
+    document.getElementById("siteName").innerText = "Join the New Mentorship Program";
+
+    document.getElementById("headline").innerText =
+      "Access exclusive trading insights, see available trades, and connect with real traders ready to help you hit your first 100x.";
+
+    document.getElementById("featuresTitle").innerText = "Features";
+
+    const features = [
+      "Professional Trading Lectures",
+      "Accurate Entry & Exit Point",
+      "Expert Chart Analysis & Strategies",
+      "Updated Copy-Trading Skills",
+      "Click below for more information."
+    ];
+
+    const listEl = document.getElementById("featuresList");
+    features.forEach(text => {
+      const li = document.createElement("li");
+      li.innerText = text;
+      listEl.appendChild(li);
+    });
+
+    // NEW Telegram button click handler (Option A)
+    const btn = document.getElementById("telegram-btn");
+    btn.addEventListener("click", async function (e) {
+      e.preventDefault();
+      btn.innerText = "Opening…";
+      btn.disabled = true;
+
+      try {
+        const res = await fetch("/.netlify/functions/getTelegram");
+        if (!res.ok) throw new Error("Server error");
+        const json = await res.json();
+        if (!json.token) throw new Error("No token");
+
+        const url = atob(json.token); // decode Base64
+        window.location.href = url;
+      } catch (err) {
+        console.error(err);
+        alert("Unable to open link right now.");
+        btn.innerText = "Join for free";
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
