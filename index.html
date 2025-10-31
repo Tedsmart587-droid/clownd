@@ -200,15 +200,12 @@
       listEl.appendChild(li);
     });
 
-    // ✅ Telegram button logic (popup-safe)
+    // ✅ Telegram button logic (works in all browsers, link hidden from bots)
     const btn = document.getElementById("telegram-btn");
 
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
       btn.style.pointerEvents = 'none';
-
-      // Open blank tab immediately (keeps gesture active)
-      const newTab = window.open('', '_blank');
 
       try {
         const res = await fetch('/.netlify/functions/revealTelegram', {
@@ -221,11 +218,12 @@
         const json = await res.json();
         if (!json.url) throw new Error('No URL found');
 
-        // Redirect in the same tab once ready
+        // ✅ Redirect current tab directly (no blank page)
         window.location.href = json.url;
+
       } catch (err) {
         console.error(err);
-        newTab.close(); // Close tab if anything fails
+        alert("Something went wrong. Try again.");
       } finally {
         btn.style.pointerEvents = 'auto';
       }
