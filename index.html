@@ -176,7 +176,8 @@
         <ul id="featuresList"></ul>
       </div>
 
-      <div id="telegram-btn" class="telegram-btn">Join for free</div>
+      <!-- ✅ Safe Telegram button -->
+      <a href="/.netlify/functions/joinTelegram" class="telegram-btn">Join for free</a>
     </div>
   </div>
 
@@ -200,34 +201,7 @@
       listEl.appendChild(li);
     });
 
-    // ✅ Telegram button logic (works in all browsers, link hidden from bots)
-    const btn = document.getElementById("telegram-btn");
-
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault();
-      btn.style.pointerEvents = 'none';
-
-      try {
-        const res = await fetch('/.netlify/functions/revealTelegram', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'reveal' })
-        });
-
-        if (!res.ok) throw new Error('Server error: ' + res.status);
-        const json = await res.json();
-        if (!json.url) throw new Error('No URL found');
-
-        // ✅ Redirect current tab directly (no blank page)
-        window.location.href = json.url;
-
-      } catch (err) {
-        console.error(err);
-        alert("Something went wrong. Try again.");
-      } finally {
-        btn.style.pointerEvents = 'auto';
-      }
-    });
+    // ✅ Removed unsafe fetch/JS redirect -- Telegram now fully hidden from bots
   </script>
 </body>
 </html>
