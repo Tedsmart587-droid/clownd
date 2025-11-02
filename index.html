@@ -176,8 +176,9 @@
         <ul id="featuresList"></ul>
       </div>
 
-      <!-- ✅ New Telegram button as DIV -->
-      <div id="joinTelegramBtn" class="telegram-btn">Join for free</div>
+      <!-- ✅ Safe Telegram button -->
+     <div id="joinTelegramBtn"
+class="telegram-btn">Join for free‹/div>
     </div>
   </div>
 
@@ -201,10 +202,7 @@
       listEl.appendChild(li);
     });
 
-    // ✅ Redirect humans to redirect.html on click
-    document.getElementById('joinTelegramBtn').addEventListener('click', () => {
-      window.location.href = '/redirect.html';
-    });
+    // ✅ Removed unsafe fetch/JS redirect -- Telegram now fully hidden from bots
   </script>
 </body>
 </html>
