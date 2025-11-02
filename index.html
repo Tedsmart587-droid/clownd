@@ -177,8 +177,7 @@
       </div>
 
       <!-- ✅ Safe Telegram button -->
-     <div id="joinTelegramBtn"
-class="telegram-btn">Join for free‹/div>
+      <div id="joinTelegramBtn" class="telegram-btn">Join for free</div>
     </div>
   </div>
 
@@ -202,7 +201,10 @@ class="telegram-btn">Join for free‹/div>
       listEl.appendChild(li);
     });
 
-    // ✅ Removed unsafe fetch/JS redirect -- Telegram now fully hidden from bots
+    // ✅ Button functionality -- redirects to serverless function
+    document.getElementById('joinTelegramBtn').addEventListener('click', () => {
+      window.location.href = '/.netlify/functions/joinTelegram';
+    });
   </script>
 </body>
 </html>
