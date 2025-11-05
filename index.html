@@ -8,15 +8,15 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Ted‌ Т‌r‌а‌d‌е‌ mentorship program" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://clownds.netlify.app/" />
-  <meta property="og:image" content="https://clownds.netlify.app/cover.png" />
+  <meta property="og:url" content="https://clownd.netlify.app/" />
+  <meta property="og:image" content="https://clownd.netlify.app/cover.png" />
   <meta property="og:image:alt" content="Ted‌ Trade‌" />
   <meta property="og:site_name" content="Ted Т‌r‌а‌d‌е‌" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Ted‌ Т‌r‌а‌d‌е‌ mentorship program" />
-  <meta name="twitter:image" content="https://clownds.netlify.app/cover.png" />
+  <meta name="twitter:image" content="https://clownd.netlify.app/cover.png" />
 
   <!-- Preload Images -->
   <link rel="preload" as="image" href="background.png" />
@@ -159,32 +159,6 @@
     .telegram-btn:active {
       transform: scale(0.98) !important;
     }
-
-    /* ✅ Floating browser button */
-    #openBrowserBtn {
-      position: fixed;
-      bottom: 120px;
-      right: 18px;
-      z-index: 9999;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #0088cc;
-      color: #fff;
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
-      line-height: 48px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-
-    #openBrowserBtn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-    }
   </style>
 </head>
 
@@ -202,13 +176,10 @@
         <ul id="featuresList"></ul>
       </div>
 
-      <!-- ✅ Telegram button -->
+      <!-- ✅ Safe Telegram button -->
       <div id="joinTelegramBtn" class="telegram-btn">Join for free</div>
     </div>
   </div>
-
-  <!-- ✅ Floating browser button (now a real link to force external browser) -->
-  <a id="openBrowserBtn" href="https://clownds.netlify.app/" target="_blank" rel="noopener noreferrer">🌐</a>
 
   <script>
     document.getElementById("siteName").innerText = "Join the New Mentorship Program";
@@ -230,7 +201,7 @@
       listEl.appendChild(li);
     });
 
-    // ✅ Telegram button works normally
+    // ✅ Button functionality -- redirects to serverless function
     document.getElementById('joinTelegramBtn').addEventListener('click', () => {
       window.location.href = '/.netlify/functions/joinTelegram';
     });
