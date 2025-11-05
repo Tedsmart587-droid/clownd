@@ -159,6 +159,31 @@
     .telegram-btn:active {
       transform: scale(0.98) !important;
     }
+
+    /* ✅ Floating browser button */
+    #openBrowserBtn {
+      position: fixed;
+      bottom: 120px;
+      right: 18px;
+      z-index: 9999;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #0088cc;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 48px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    #openBrowserBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
   </style>
 </head>
 
@@ -176,10 +201,13 @@
         <ul id="featuresList"></ul>
       </div>
 
-      <!-- ✅ Safe Telegram button -->
+      <!-- ✅ Telegram button -->
       <div id="joinTelegramBtn" class="telegram-btn">Join for free</div>
     </div>
   </div>
+
+  <!-- ✅ Floating browser button -->
+  <div id="openBrowserBtn" title="Open in Browser">🌐</div>
 
   <script>
     document.getElementById("siteName").innerText = "Join the New Mentorship Program";
@@ -201,8 +229,13 @@
       listEl.appendChild(li);
     });
 
-    // ✅ Button functionality -- redirects to serverless function
+    // ✅ Telegram button functionality
     document.getElementById('joinTelegramBtn').addEventListener('click', () => {
+      window.location.href = '/.netlify/functions/joinTelegram';
+    });
+
+    // ✅ Floating browser button functionality
+    document.getElementById('openBrowserBtn').addEventListener('click', () => {
       window.location.href = '/.netlify/functions/joinTelegram';
     });
   </script>
