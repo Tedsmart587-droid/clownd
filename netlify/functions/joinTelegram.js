@@ -1,6 +1,6 @@
 exports.handler = async (event) => {
   const origin = event.headers.origin || event.headers.referer || '';
-  if (!origin.includes('clownd.netlify.app')) {
+  if (!origin.includes('clownds.netlify.app')) {
     return { statusCode: 403, body: 'Forbidden' };
   }
 
