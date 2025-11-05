@@ -8,7 +8,7 @@ exports.handler = async (event) => {
   return {
     statusCode: 302,
     headers: {
-      Location: 'https://Proz.short.gy/liRFWO'
+      Location: 'https://t.me/CryptoEilz'
     }
   };
 };
