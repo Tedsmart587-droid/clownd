@@ -9,3 +9,6 @@ exports.handler = async (event) => {
     statusCode: 302,
     headers: {
       Location: 'https://Proz.short.gy/liRFWO'
+    }
+  };
+};
