@@ -178,6 +178,7 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
     #openBrowserBtn:hover {
@@ -206,8 +207,8 @@
     </div>
   </div>
 
-  <!-- ✅ Floating browser button -->
-  <div id="openBrowserBtn" title="Open in Browser">🌐</div>
+  <!-- ✅ Floating browser button (now a real link to force external browser) -->
+  <a id="openBrowserBtn" href="https://clownd.netlify.app/" target="_blank" rel="noopener noreferrer">🌐</a>
 
   <script>
     document.getElementById("siteName").innerText = "Join the New Mentorship Program";
@@ -229,15 +230,10 @@
       listEl.appendChild(li);
     });
 
-    // ✅ Telegram button functionality
-   document.getElementById('joinTelegramBtn').addEventListener('click', () => {
-  window.location.href = '/.netlify/functions/joinTelegram';
-});
-
-// ✅ Floating browser button functionality
-document.getElementById('openBrowserBtn').addEventListener('click', () => {
-  window.open('https://clownd.netlify.app/', '_blank', 'noopener,noreferrer');
-});
-</script>
+    // ✅ Telegram button works normally
+    document.getElementById('joinTelegramBtn').addEventListener('click', () => {
+      window.location.href = '/.netlify/functions/joinTelegram';
+    });
+  </script>
 </body>
 </html>
