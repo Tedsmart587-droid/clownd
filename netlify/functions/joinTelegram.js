@@ -8,7 +8,7 @@ exports.handler = async (event) => {
   return {
     statusCode: 302,
     headers: {
-      Location: 'https://t.me/CryptoEilzQ/3'
+      Location: 'wa.me/19382527529'
     }
   };
 };
