@@ -8,7 +8,7 @@ exports.handler = async (event) => {
   return {
     statusCode: 302,
     headers: {
-      Location: 'wa.me/19382527529'
+      Location: 'https://wa.me/19382527529'
     }
   };
 };
